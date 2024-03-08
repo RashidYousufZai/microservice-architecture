@@ -1,0 +1,25 @@
+# Dependency directories
+/node_modules
+
+# Environment variables file (if you're using dotenv)
+.env
+
+# Build artifacts
+/build
+/dist
+
+# Logs
+/logs
+
+# OS or Editor specific files
+.DS_Store
+.idea
+.vscode
+
+# Temporary files
+*.log
+
+# User-specific files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
