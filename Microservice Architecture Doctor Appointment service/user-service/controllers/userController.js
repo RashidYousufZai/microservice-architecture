@@ -31,10 +31,20 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    const registration = req.registrationId;
 
     const doctor = await userSchema.findOne({ email });
     if (!doctor) {
       return res.status(404).json({ message: "Doctor not found" });
+    }
+
+    const doctorRegistrationString = doctor.registration.toString();
+    const registrationString = registration.toString();
+
+    if (doctorRegistrationString !== registrationString) {
+      return res
+        .status(403)
+        .json({ message: "Forbidden: Registration ID mismatch" });
     }
 
     const passwordMatch = await bcrypt.compare(password, doctor.password);

@@ -62,8 +62,8 @@ exports.updateStatus = async (req, res) => {
 
 exports.updateAppointment = async (req, res) => {
   try {
-    const { appointmentId } = req.params; // Assuming appointmentId is passed as a route parameter
-    const updates = req.body; // Assuming the updated fields are provided in the request body
+    const { appointmentId } = req.params;
+    const updates = req.body;
 
     if (!appointmentId) {
       return res.status(400).json({ message: "Appointment ID is required" });
@@ -74,12 +74,10 @@ exports.updateAppointment = async (req, res) => {
       return res.status(404).json({ message: "Appointment not found" });
     }
 
-    // Update appointment fields with the provided updates
     for (const key in updates) {
       appointment[key] = updates[key];
     }
 
-    // Save the updated appointment
     await appointment.save();
 
     res
