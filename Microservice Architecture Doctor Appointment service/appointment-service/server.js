@@ -23,8 +23,3 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-// Import and use the updateStatus function
-const { updateStatus } = require("./controllers/appointmentController");
-
-app.post("/api/updateStatus", updateStatus);

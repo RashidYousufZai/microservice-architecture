@@ -5,12 +5,8 @@ const MONGODB_URI_2 = process.env.MONGODB_URI_2;
 
 const connectDBs = () => {
   try {
-    const doctordb = mongoose.createConnection(
-      "mongodb://localhost:27017/doctordb"
-    );
-    const userDB = mongoose.createConnection(
-      "mongodb://localhost:27017/userDB"
-    );
+    const doctordb = mongoose.createConnection(MONGODB_URI_1);
+    const userDB = mongoose.createConnection(MONGODB_URI_2);
     console.log("database is connected");
     return { doctordb, userDB };
   } catch (error) {

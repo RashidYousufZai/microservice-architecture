@@ -6,9 +6,9 @@ const MONGODB_URI_2 = process.env.MONGODB_URI_2;
 const connectDBs = () => {
   try {
     const doctordb = mongoose.createConnection(MONGODB_URI_1);
-    const userDB = mongoose.createConnection(MONGODB_URI_2);
+    const appoinmentdb = mongoose.createConnection(MONGODB_URI_2);
     console.log("database is connected");
-    return { doctordb, userDB };
+    return { doctordb, appoinmentdb };
   } catch (error) {
     console.log(`Error:${error.message}`);
     process.exit(1);

@@ -8,7 +8,7 @@
     "start:gateway": "nodemon gateway.js",
     "start:doctor": "cd doctor-service && nodemon server.js",
     "start:appoinment": "cd registration-service && nodemon server.js",
-    "start:user-service": "cd patient-service && nodemon server.js",
+    "start:user-service": "cd user-service && nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
