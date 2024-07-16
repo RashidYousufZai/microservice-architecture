@@ -3,13 +3,35 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const app = express();
 
-app.use(
-  "/registration",
-  createProxyMiddleware({ target: "http://localhost:3000", changeOrigin: true })
-);
+// Proxy configuration
+const proxyConfig = {
+  "/registration": {
+    target: "http://localhost:3000",
+    changeOrigin: true,
+    pathRewrite: { "^/registration": "" },
+  },
+  "/doctor": {
+    target: "http://localhost:3001",
+    changeOrigin: true,
+    pathRewrite: { "^/doctor": "" },
+  },
+  "/patient": {
+    target: "http://localhost:3002",
+    changeOrigin: true,
+    pathRewrite: { "^/patient": "" },
+  },
+  "/appoinment": {
+    target: "http://localhost:3003",
+    changeOrigin: true,
+    pathRewrite: { "^/appoinment": "" },
+  },
+};
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`API Gateway is running on port ${PORT}`);
-  console.log(`Proxying requests to http://localhost:3000`);
+// Use the proxy configurations
+Object.keys(proxyConfig).forEach((context) => {
+  app.use(context, createProxyMiddleware(proxyConfig[context]));
+});
+
+app.listen(8080, () => {
+  console.log("API Gateway is running on http://localhost:8080");
 });

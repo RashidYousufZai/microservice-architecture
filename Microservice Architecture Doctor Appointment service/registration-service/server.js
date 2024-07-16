@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/userRoutes");
+const cors = require("cors");
 
 const app = express();
 app.use(express.json());
@@ -14,6 +15,13 @@ mongoose
     console.error("Error connecting to MongoDB", err);
     process.exit(1);
   });
+
+app.use(cors(corsOptions));
+
+var corsOptions = {
+  origin: "http://localhost:5173",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
 app.use("/api", authRoutes);
 
